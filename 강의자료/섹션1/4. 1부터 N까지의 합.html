@@ -6,11 +6,14 @@
   <body>
     <script>
       function solution(n) {
-        return n % 12 == 0 ? n / 12 : parseInt(n / 12) + 1; 
+        let answer = 0;
+        while (n >= 0) {
+          answer += n--;
+        }
+        return answer;
       }
 
-      console.log(solution(168));
+      console.log(solution(10));
     </script>
   </body>
-</html>
 </html>
