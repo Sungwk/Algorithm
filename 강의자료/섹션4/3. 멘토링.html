@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(test) {
+        let answer = 0;
+        for (let k = 1; k <= 4; k++) {
+          for (let l = 1; l <= 4; l++) {
+            let pair = true;
+            if (k != l) {
+              for (let i = 0; i < test.length; i++) {
+                let a, b;
+                for (let j = 0; j < test[i].length; j++) {
+                  if (test[i][j] === l) {
+                    b = j;
+                  } else if (test[i][j] === k) {
+                    a = j;
+                  }
+                }
+                if (a >= b) pair = false;
+              }
+            }
+            if (k != l && pair) {
+              console.log(k, l);
+              answer += 1;
+            }
+          }
+        }
+        return answer;
+      }
+
+      let arr = [
+        [3, 4, 1, 2],
+        [4, 3, 2, 1],
+        [3, 1, 4, 2],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
