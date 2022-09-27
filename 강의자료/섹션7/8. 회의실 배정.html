@@ -7,6 +7,18 @@
     <script>
       function solution(meeting) {
         let answer = 0;
+        meeting.sort();
+        for (let i = 0; i < meeting.length; i++) {
+          let n = 1;
+          let end = meeting[i][1];
+          for (let j = i; j < meeting.length; j++) {
+            if (meeting[j][0] >= end) {
+              n += 1;
+              end = meeting[j][1];
+            }
+          }
+          answer = Math.max(n, answer);
+        }
         return answer;
       }
 
