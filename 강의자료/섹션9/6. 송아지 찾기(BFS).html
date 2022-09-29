@@ -1,37 +1,40 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>출력결과</title>
-    </head>
-    <body>
-        <script>
-            function solution(s, e){  
-                let answer=0;
-                let ch=Array.from({length:10001}, ()=>0);
-                let dis=Array.from({length:10001}, ()=>0);
-                let queue=[];
-                queue.push(s);
-                ch[s]=1;
-                dis[s]=0;
-                while(queue.length){
-                    let x=queue.shift();
-                    for(let nx of [x-1, x+1, x+5]){
-                        if(nx===e) return dis[x]+1;
-                        if(nx>0 && nx<=10000 && ch[nx]===0){
-                            ch[nx]=1;
-                            queue.push(nx);
-                            dis[nx]=dis[x]+1;
-                        }
-                    }
-                }
-                return answer;
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s, e) {
+        let answer = 0;
+        let queue = [];
+        let ch = Array.from({ length: 10001 }, () => 0);
+        let dist = Array.from({ length: 10001 }, () => 0);
+        queue.push(s);
+        ch[s] = 1;
+        dist[s] = 0;
+        while (true) {
+          let now = queue.shift();
+          if (now === e) break;
+          else {
+            for (x of [now - 1, now + 1, now + 5]) {
+              if (x >= 0 && x <= 10000 && !ch[x]) {
+                ch[x] = 1;
+                dist[x] = dist[now] + 1;
+                queue.push(x);
+              }
             }
+          }
+        }
+        answer = dist[e];
+        return answer;
+      }
 
-            console.log(solution(8, 3));
-        </script>
-    </body>
+      console.log(solution(8, 3));
+    </script>
+  </body>
 </html>
-
+<!-- 
 
 
 <html>
@@ -68,4 +71,4 @@
             console.log(solution(5, 14));
         </script>
     </body>
-</html>
+</html> -->
