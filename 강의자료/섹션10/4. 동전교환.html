@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, coin) {
+        let answer = 0;
+        let dy = Array.from({ length: m + 1 }, () => 1000);
+        dy[0] = 0;
+        for (let i = 1; i <= m; i++) {
+          for (let j = 0; j < coin.length; j++) {
+            if (coin[j] <= i) dy[i] = Math.min(dy[i], dy[i - coin[j]] + 1);
+          }
+        }
+        answer = dy[m];
+        return answer;
+      }
+
+      let arr = [1, 2, 5];
+      console.log(solution(16, arr));
+    </script>
+  </body>
+</html>
